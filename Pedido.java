@@ -40,6 +40,14 @@ public class Pedido {
         }
     }
 
+    /**
+     * Adiciona um item diretamente ao pedido sem verificar o status.
+     * Usado pelo repositório ao reidratar pedidos a partir da persistência.
+     */
+    public void adicionarItemPersistido(ItemPedido item) {
+        this.itens.add(item);
+    }
+
     public void removerItem(Produto produto) {
         if (this.status == StatusPedido.ABERTO) {
             itens.removeIf(item -> item.getProduto().getId() == produto.getId());

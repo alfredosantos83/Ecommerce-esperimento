@@ -1,41 +1,46 @@
-# Projeto E-Commerce em Java
+# Projeto E‑Commerce (Console)
 
-Este é um sistema de E-Commerce simples desenvolvido em Java, como parte de um projeto de estudo. A aplicação é executada via console and permite gerenciar clientes, produtos e pedidos, persistindo os dados em arquivos CSV.
+Aplicação console em Java que implementa um pequeno sistema de e‑commerce com persistência em CSV.
 
-## Funcionalidades
+## Pré-requisitos
+- JDK 11+ instalado
+- PowerShell (Windows)
 
-- **Gestão de Clientes**: Cadastrar, listar, atualizar e pesquisar clientes.
-- **Gestão de Produtos**: Cadastrar, listar, atualizar e pesquisar produtos.
-- **Gestão de Pedidos**:
-  - Criar pedidos para clientes.
-  - Adicionar/remover itens.
-  - Alterar o fluxo de status do pedido (Aberto -> Aguardando Pagamento -> Pago -> Finalizado).
-  - Notificações assíncronas simuladas para o cliente.
+## Compilação (PowerShell)
+Abra um PowerShell na raiz do projeto (`c:\Users\Pichau\workspace-ada\projeto-ecommerce-java`) e execute:
 
-## Tecnologias e Conceitos Utilizados
+```powershell
+javac -d "bin" "*.java"
+```
 
-- **Linguagem**: Java 11+
-- **APIs e Conceitos**:
-  - `java.time` para manipulação de datas.
-  - `Stream API` para manipulação de coleções (map, filter, reduce).
-  - `Optional` para tratamento de valores nulos.
-  - `CompletableFuture` para simulação de notificações assíncronas.
-  - `Scanner` para interação via menu de console.
-- **Persistência**: Arquivos de texto no formato CSV.
+## Executando a aplicação
+- Iniciar o menu (interativo):
 
-## Como Executar o Projeto
+```powershell
+java -cp "bin" com.ecommerce.main.Main
+```
 
-1.  **Pré-requisitos**:
-    - JDK (Java Development Kit) 11 ou superior instalado.
+- Iniciar e sair automaticamente (envia `0` para sair):
 
-2.  **Clone o repositório**:
-    ```bash
-    git clone https://github.com/alfredosantos83/projeto-ecommerce-java.git
-    cd projeto-ecommerce-java
-    ```
+```powershell
+"0" | java -cp "bin" com.ecommerce.main.Main
+```
 
-3.  **Compile e execute o projeto a partir da raiz**:
-    ```bash
-    javac -d bin src/com/ecommerce/main/Main.java
-    java -cp bin com.ecommerce.main.Main
-    ```
+- Executar o SmokeTest (fluxo automático de verificação de persistência):
+
+```powershell
+java -cp "bin" SmokeTest
+```
+
+## Arquivos de persistência gerados (na raiz do projeto)
+- `clientes.csv` — clientes (documento,nome)
+- `produtos.csv` — produtos (id,nome,preco)
+- `pedidos.csv` — pedidos (id,documento,data,status)
+- `itens_pedido.csv` — itens (pedidoId,produtoId,quantidade,precoVenda)
+
+## Notas
+- As notificações são simuladas com `CompletableFuture` e aparecem como mensagens assíncronas no console.
+- Se quiser reiniciar os dados, apague os CSVs listados acima.
+
+## Repositório remoto usado aqui:
+https://github.com/alfredosantos83/Ecommerce-esperimento.git

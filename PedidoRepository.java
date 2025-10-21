@@ -81,7 +81,8 @@ public class PedidoRepository {
 
                         pedidos.stream().filter(p -> p.getId() == pedidoId).findFirst().ifPresent(pedido -> {
                             produtoService.findById(produtoId).ifPresent(produto -> {
-                                pedido.adicionarItem(new ItemPedido(produto, quantidade, precoVenda));
+                                // Ao reidratar de persistência precisamos adicionar o item independentemente do status
+                                pedido.adicionarItemPersistido(new ItemPedido(produto, quantidade, precoVenda));
                             });
                         });
                     });
