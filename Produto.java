@@ -40,4 +40,9 @@ public class Produto {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
+    // Permite atualizar o gerador de IDs quando os produtos são carregados do repositório
+    public static void setLastId(long lastId) {
+        idGenerator.set(lastId);
+    }
 }

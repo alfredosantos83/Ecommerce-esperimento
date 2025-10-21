@@ -46,7 +46,7 @@ public class ProdutoRepository {
                     .collect(Collectors.toList());
 
             // Atualiza o gerador de ID para evitar colisões
-            produtos.stream().mapToLong(Produto::getId).max().ifPresent(maxId -> Produto.idGenerator.set(maxId));
+            produtos.stream().mapToLong(Produto::getId).max().ifPresent(Produto::setLastId);
             return produtos;
         } catch (IOException e) {
             System.err.println("Erro ao carregar produtos: " + e.getMessage());

@@ -87,7 +87,7 @@ public class PedidoRepository {
                     });
                 }
             }
-            pedidos.stream().mapToLong(Pedido::getId).max().ifPresent(maxId -> Pedido.idGenerator.set(maxId));
+            pedidos.stream().mapToLong(Pedido::getId).max().ifPresent(Pedido::setLastId);
             return pedidos;
         } catch (IOException e) {
             System.err.println("Erro ao carregar pedidos: " + e.getMessage());

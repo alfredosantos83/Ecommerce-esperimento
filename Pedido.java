@@ -89,4 +89,9 @@ public class Pedido {
         return String.format("Pedido [ID: %d, Cliente: %s, Data: %s, Status: %s, Valor Total: R$%.2f]",
                 id, cliente.getNome(), dataCriacao, status, getValorTotal());
     }
+
+    // Permite atualizar o gerador de IDs quando os pedidos são carregados do repositório
+    public static void setLastId(long lastId) {
+        idGenerator.set(lastId);
+    }
 }
